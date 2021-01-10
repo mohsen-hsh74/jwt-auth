@@ -54,7 +54,22 @@ class JWTAuth extends JWT
 
         return $this->fromUser($this->user());
     }
+    
+    /**
+     * Attempt to authenticate the user by ID and return the token.
+     *
+     * @param  array  $credentials
+     *
+     * @return false|string
+     */
+    public function attemptWithID($id)
+    {
+        if (! $this->auth->byId($id))
+            return false;
 
+        return $this->fromUser($this->user());
+    }
+    
     /**
      * Authenticate a user via a token.
      *
